@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Hello World</string>
+    <string name="accessibility_service_description">Automates calendar checking and provides daily summaries</string>
+</resources>
