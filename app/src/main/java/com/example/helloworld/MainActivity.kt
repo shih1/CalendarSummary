@@ -19,6 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.helloworld.ui.theme.HelloWorldTheme
 
+
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.Box
+
 class MainActivity : ComponentActivity() {
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -156,26 +161,36 @@ fun MainScreen(
         ) {
             Text("Run Automation")
         }
-
-        // Summary display
+// Summary display
         Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize()
+            ) {
                 Text(
                     text = "Daily Summary:",
                     style = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = summary,
-                    style = MaterialTheme.typography.bodyMedium
-                )
+
+                // Scrollable text area
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Text(
+                        text = summary,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
             }
         }
-
         // Refresh button
         Button(
             onClick = {
